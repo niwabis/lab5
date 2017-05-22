@@ -27,7 +27,10 @@ public:
 		}
 	}
 	void operator=(vector<int>r) {
-		number = r;
+	/*	for(int i=1;i<=r.size();i++){
+			number.push_back(r[i]);
+		}*/
+		number=r;
 	}
 	vector<int>number;
 	string num;
@@ -40,10 +43,8 @@ private:
 };
 
 ostream & operator <<(ostream & out, HugeInt &Huge) {
-	for (int g = 0; g <= Huge.number.size() - 1; ++g) {
-		Huge.num[g] = Huge.number[g];
-	}
-	out << Huge.num;
+	for (int g = Huge.number.size()-1; g >=0 ; --g) 
+		out << Huge.number[g];
 	return out;
 }
 istream &operator >> (istream & in, HugeInt & Huge) {
@@ -58,7 +59,7 @@ vector<int> operator+(HugeInt A, HugeInt B) {
 	int s = B.number.size();
 	vector<int>re;
 	if (size > s) {
-		for (int l = size - 1; l >= 0; --l) {
+		for (int l = 0; l <= size-1; ++l) {
 			if (l <= s) {
 				re.push_back(A.number[l] + B.number[l]);
 			}
@@ -66,7 +67,7 @@ vector<int> operator+(HugeInt A, HugeInt B) {
 		}
 	}
 	else if(size<s){
-		for (int l = s - 1; l >= 0; --l) {
+		for (int l = 0; l <= s-1; ++l) {
 			if (l <= size) {
 				re.push_back(A.number[l] + B.number[l]);
 			}
@@ -74,20 +75,17 @@ vector<int> operator+(HugeInt A, HugeInt B) {
 		}
 	}
 	else {
-		for (int l = s - 1; l >= 0; --l) {
+		for (int l = 0; l <= s-1; ++l) {
 				re.push_back(A.number[l] + B.number[l]);
 		}
 	}
-	for (int i = re.size() - 1; i >= 0; --i) {
+	for (int i = 0; i <= re.size()-1; ++i) {
 		if (re[i] >= 10) {
-			re[i + 1] += 1;
-			re[i] -= 10;
+			re[i + 1] + 1;
+			re[i] - 10;
 		}
 	}
-	if (re[re.size()] >= 10) {
-		re.push_back(1);
-		re[re.size()] -= 10;
-	}
+	
 	return re;
 }
 vector<int> operator-(HugeInt A, HugeInt B) {
@@ -95,7 +93,7 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 	int s = B.number.size();
 	vector<int>re;
 	if (size > s) {
-		for (int l = size; l >= 0; --l) {
+		for (int l = 0; l <= size-1; ++l) {
 			if (l <= s) {
 				re.push_back(A.number[l] - B.number[l]);
 			}
@@ -103,7 +101,7 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 				re.push_back(A.number[l]);
 			}
 		}
-		for (int i = size - 1; i >= 0; --i) {
+		for (int i = 0; i <= size-1; ++i) {
 			if (re[i] < 0) {
 				re[i] += 10;
 				re[i + 1] -= 1;
@@ -112,7 +110,7 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 
 	}
 	else if (size < s) {
-		for (int l = s; l >= 0; --l) {
+		for (int l = 0; l <= s-1; ++l) {
 			if (l <= size) {
 				re.push_back(A.number[l] - B.number[l]);
 			}
@@ -120,7 +118,7 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 				re.push_back(A.number[l]);
 			}
 		}
-		for (int i = s - 1; i >= 0; --i) {
+		for (int i = 0; i <= s-1; ++i) {
 			if (re[i] < 0) {
 				re[i] = re[i] + 10;
 				re[i + 1] -= 1;
@@ -129,10 +127,10 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 
 	}
 	else {
-		for (int l = size; l >= 0; --l) {
+		for (int l = 0; l <= size-1; ++l) {
 			re.push_back(A.number[l] - B.number[l]);
 		}
-		for (int i = re.size() - 1; i >= 0; --i) {
+		for (int i = 0; i <= re.size()-1; ++i) {
 			if (re[i] < 0) {
 				re[i] = re[i] + 10;
 				re[i + 1] -= 1;
