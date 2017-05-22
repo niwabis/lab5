@@ -27,9 +27,6 @@ public:
 		}
 	}
 	void operator=(vector<int>r) {
-	/*	for(int i=1;i<=r.size();i++){
-			number.push_back(r[i]);
-		}*/
 		number=r;
 	}
 	vector<int>number;
@@ -77,10 +74,10 @@ vector<int> operator+(HugeInt A, HugeInt B) {
 				re.push_back(A.number[l] + B.number[l]);
 			}
 		}
-	for (int i = re.size()-1; i >= 1; --i) {
+	for (int i = re.size()-2; i >= 0; --i) {
 		if (re[i] >= 10) {
-			re[i - 1] ++ ;
-			re[i] - 10;
+			re[i + 1] ++ ;
+			re[i] -= 10;
 		}
 	}
 	
@@ -115,10 +112,10 @@ vector<int> operator-(HugeInt A, HugeInt B) {
 			re.push_back(A.number[l] - B.number[l]);
 		}
 	}
-	for (int i = 1; i <= re.size()-1; ++i) {
+	for (int i = 0; i <= re.size()-2; ++i) {
 		if (re[i] < 0) {
-			re[i - 1] + 1;
-			re[i] + 10;
+			re[i + 1] --;
+			re[i] += 10;
 		}
 	}
 	return re;
